@@ -1,8 +1,8 @@
 # AquAlarm
-Submission for Hack'n'Roll 2019, a 24 hour hackathon without any problem statements i.e. anything goes.
+Submission for Hack'n'Roll 2019, a 24 hour hackathon. Representing [VRMC](https://vrmc.github.io/index.html).
 
 ## Overview
-An Arduino powered alarm clock that sprays water in your face if you don't wake up on time.
+An Arduino powered alarm clock contraption that **sprays water in your face if you don't wake up on time.**
 
 Made possible by a ~haphazard~ combination of pneumatics, electromechanics, and embedded programming.
 
@@ -23,8 +23,14 @@ The solenoid valve is connected to a DC relay and Lithum-ion Polymer batteries. 
 ### Software & Electronics
 Powering the entire system, the Arduino is connected to a I2C 2x16 LCD board, a buzzer, an LED light system, a potentiometer, and a button. The potentiometer can be used to set the time of the alarm.
 
-### Usage
-The user positions the device pointing towards them, and sets the alarm before going to bed. As the set alarm time approaches, the buzzer will start making loud noises. Soon after, the LED lights will flash. Finally, if the user has yet to press the button to disable the alarm, the Arduino will send a digital output signal to the DC relay, which will open the solenoid valve causing the user to be sprayed with water (as a last resort).
+The code running on the Arduino board can be found in [this](https://github.com/sp4ce-cowboy/AquAlarm/blob/main/aqualarm/aqualarm.ino) file. The dependencies for driving the LCD display and providing for low level time and date functions 
+
+## Usage
+1. The user positions the device pointing towards them, and sets the alarm before going to bed.
+2. As the set alarm time approaches, the buzzer will begin emitting loud sounds.
+4. Soon after, the LED lights will flash (together with the buzzer sounds) in the user's face.
+5. If the user fails press the button to disable the alarm by now, the Arduino will send a digital output signal to the DC relay, which will open the solenoid valve causing the user to be sprayed with water (as a last resort).
+6. The user can press (and hold) the button on the side of the device to disable the alarm at any time during the process.
 
  ## Notes
- This project, while originally dated 2019, is being uploaded onto GitHub in 2024 as part of an ongoing attempt at consolidating my portfolio and previous projects in a publically available manner.
+ _This project, while originally dated 2019, is being uploaded onto GitHub in 2024 as part of an ongoing attempt at consolidating my portfolio and previous projects in a publically available manner._
