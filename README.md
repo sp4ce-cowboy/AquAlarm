@@ -24,7 +24,7 @@ The solenoid valve is connected to a DC relay and Lithum-ion Polymer batteries. 
 Powering the entire system, the Arduino is connected to a I2C 2x16 LCD board, a buzzer, an LED light system, a potentiometer, and a button. The potentiometer can be used to set the time of the alarm.
 
 ### Usage
-The user positions the device pointing towards them, and sets the alarm before going to bed. As the set alarm time approaches, the buzzer will start making loud noises. Soon after, the LED lights will flash. Finally, if the user has yet to press the button to disable the alarm, the Arduino will send a digital output signal to the DC relay, which will open the solenoid valve causing the user's to be sprayed with water.
+The user positions the device pointing towards them, and sets the alarm before going to bed. As the set alarm time approaches, the buzzer will start making loud noises. Soon after, the LED lights will flash. Finally, if the user has yet to press the button to disable the alarm, the Arduino will send a digital output signal to the DC relay, which will open the solenoid valve causing the user to be sprayed with water (as a last resort).
 
  ## Notes
  This project, while originally dated 2019, is being uploaded onto GitHub in 2024 as part of an ongoing attempt at consolidating my portfolio and previous projects in a publically available manner.
