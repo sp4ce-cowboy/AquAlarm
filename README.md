@@ -23,7 +23,7 @@ The solenoid valve is connected to a DC relay and Lithum-ion Polymer batteries. 
 ### Software & Electronics
 Powering the entire system, the Arduino is connected to a I2C 2x16 LCD board, a buzzer, an LED light system, a potentiometer, and a button. The potentiometer can be used to set the time of the alarm.
 
-The code running on the Arduino board can be found in [this](https://github.com/sp4ce-cowboy/AquAlarm/blob/main/aqualarm/aqualarm.ino) file. The dependencies for driving the LCD display and providing for offline low level time and date functions are also included.
+The code running on the Arduino board can be found in [this](https://github.com/sp4ce-cowboy/AquAlarm/blob/main/aqualarm/aqualarm.ino) file. The dependencies for driving the LCD display and providing for offline low level time and date functions are also included in this repo as C++ header files.
 
 ## Usage
 1. The user positions the device pointing towards them, and sets the alarm before going to bed.
