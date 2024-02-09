@@ -1,4 +1,4 @@
-# AquAlarm
+# AquAlarm <img src="https://tokei.rs/b1/github/sp4ce-cowboy/AquAlarm">
 Submission for Hack'n'Roll 2019, a 24 hour hackathon. Representing [VRMC](https://vrmc.github.io/index.html).
 
 ## Overview
