@@ -33,4 +33,4 @@ The code running on the Arduino board can be found in [this](https://github.com/
 6. The user can press (and hold) the button on the side of the device to disable the alarm at any time during the process.
 
  ## Notes
- _This project, while originally dated 2019, is being uploaded onto GitHub in 2024 as part of an ongoing attempt at consolidating my portfolio and previous projects in a publically available manner._
+ _Dated 2019, hosted on Github in 2024 as part of a consolidation effort_
