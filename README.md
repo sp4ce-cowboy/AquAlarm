@@ -1,36 +1,81 @@
-# AquAlarm <img src="https://tokei.rs/b1/github/sp4ce-cowboy/AquAlarm">
-Submission for Hack'n'Roll 2019, a 24 hour hackathon. Representing [VRMC](https://vrmc.github.io/index.html).
+<div align="center">
 
-## Overview
-An Arduino powered alarm clock contraption that **sprays water in your face if you don't wake up on time.**
+# AquAlarm
 
-Made possible by a ~haphazard~ combination of pneumatics, electromechanics, and embedded programming.
+**An alarm clock that sprays water in your face if you don't wake up.**<br>
+An Arduino alarm with an RGB LCD, a buzzer and a pressurised water canister behind a solenoid
+valve, built in 24 hours at Hack&Roll 2019 by a team from VRMC.
 
-<a>
-<img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/3eb52954-7223-4ceb-b778-1b65cb06af59" align="center" height="380"/>
-</a>
-<a>
-<img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/68dd5610-f135-49e8-b797-5fd22a9312cc" align="center" height="380"/>
-</a>
+[![Arduino](https://img.shields.io/badge/Arduino-Nano-00878F?logo=arduino&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino#L35-L121)
+[![C++](https://img.shields.io/badge/C%2B%2B-Arduino-00599C?logo=cplusplus&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino)
 
-## Some Explanation
-### Pneumatics
-A solenoid value is hydraulically and pneumatically connected to a pressurized canister (made of PVC) containing plain water via pressure-rated polyurethane tubing. The canister itself can be pressured either via a schrader valve or a lighter valve, whereby either air or butane can act as fluid propellant. 
+![Hackathon](https://img.shields.io/badge/Hack%26Roll-2019-555?style=flat-square)
+![Time](https://img.shields.io/badge/built%20in-24%20h-555?style=flat-square)
 
-### Electromechanics
-The solenoid valve is connected to a DC relay and Lithum-ion Polymer batteries. The DC relay is connected to an Arduino Nano board. The valve is normally closed, meaning that when no power is applied, it will stop fluid flow by default. When a power signal is sent from the Arduino to the relay, the circuit consisting of the solenoid valve and the DC relay is closed, and the pressure differential between atmospheric pressure and canister pressure causes the fluid in the canister to flow in the direction of lower pressure, through the solenoid valve.
+</div>
 
-### Software & Electronics
-Powering the entire system, the Arduino is connected to a I2C 2x16 LCD board, a buzzer, an LED light system, a potentiometer, and a button. The potentiometer can be used to set the time of the alarm.
+> [!NOTE]
+> This consolidated README page was added by
+> [Claude Opus 5.5](https://docs.anthropic.com/en/docs/claude-code) in Nov 2026 using my
+> [agentic-repo-analysis](https://github.com/sp4ce-cowboy/agentic-workflows) skill, from the
+> project's code and the earlier README. The project itself is from Jan 2019. The original README
+> is in **[README-ORIGINAL.md](README-ORIGINAL.md)**.
 
-The code running on the Arduino board can be found in [this](https://github.com/sp4ce-cowboy/AquAlarm/blob/main/aqualarm/aqualarm.ino) file. The dependencies for driving the LCD display and providing for offline low level time and date functions are also included in this repo as C++ header files.
+## At a glance
 
-## Usage
-1. The user positions the device pointing towards them, and sets the alarm before going to bed.
-2. As the set alarm time approaches, the buzzer will begin emitting loud sounds.
-4. Soon after, the LED lights will flash (together with the buzzer sounds) in the user's face.
-5. If the user fails press the button to disable the alarm by now, the Arduino will send a digital output signal to the DC relay, which will open the solenoid valve causing the user to be sprayed with water (as a last resort).
-6. The user can press (and hold) the button on the side of the device to disable the alarm at any time during the process.
+| | |
+|---|---|
+| **What** | A three-stage alarm: a buzzer, then a flashing red display, then a spray of water as a last resort. A button silences it |
+| **Context** | [Hack&Roll 2019](https://hacknroll.nushackers.org/), NUS Hackers' 24-hour hackathon (Jan 2019), as a team from [VRMC](https://vrmc.github.io/index.html) |
+| **Stack** | Arduino Nano in C++, Grove RGB LCD over I²C, the Arduino Time library, a relay, a solenoid valve, LiPo batteries, a PVC pressure canister |
 
- ## Notes
- _Dated 2019, hosted on Github in 2024 as part of a consolidation effort_
+<img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/3eb52954-7223-4ceb-b778-1b65cb06af59" height="380"> <img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/68dd5610-f135-49e8-b797-5fd22a9312cc" height="380">
+
+## How it works
+
+```mermaid
+flowchart LR
+    POT[Potentiometer] -->|alarm hour| NANO["Arduino Nano<br/>non-blocking loop"]
+    BTN[Button] -->|stop| NANO
+    NANO -->|I²C| LCD["RGB LCD<br/>time · alarm · red flash"]
+    NANO --> BZ[Buzzer]
+    NANO --> RL[Relay] --> SV["Solenoid valve<br/>normally closed"]
+    CAN["PVC canister<br/>water, pressurised with air or butane"] --> SV --> SPRAY[Spray]
+```
+
+- **Pneumatics:** a PVC canister of water is pressurised through a Schrader or lighter valve and
+  piped through pressure-rated polyurethane tubing to a normally closed solenoid valve.
+- **Electromechanics:** the Arduino drives a DC relay that switches LiPo power to the valve. When
+  it opens, the pressure difference pushes the water out.
+- **Software** ([`aqualarm.ino`](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino)):
+  - The potentiometer sets the alarm hour (`analogRead` mapped to 0 – 24).
+  - The LCD shows the time and the alarm, refreshed once a second.
+  - At the alarm time, the buzzer sounds and the backlight flashes red every other second; ten
+    seconds in, it moves to the spray stage, which drives the relay pin.
+  - All timing uses `millis()` intervals rather than `delay()`, so the button is read on every
+    pass of the loop.
+
+## Skills shown
+
+| Skill | Where it shows (click the links for the code) | Docs |
+|---|---|---|
+| **Embedded programming**<br><img alt="Arduino" src="https://img.shields.io/badge/Arduino-Nano-00878F?logo=arduino&logoColor=white"> | A non-blocking loop with `millis()` timers, analogue input mapping and digital outputs: [`loop`, `alarm`](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino#L35-L111) | [millis()](https://docs.arduino.cc/language-reference/en/functions/time/millis/) |
+| **I²C peripherals** | The Grove RGB LCD: text and backlight colour: [`printPerSec`](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino#L112-L121) | [Grove LCD](https://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/) |
+| **Electromechanics** | A relay switching a solenoid valve on battery power | |
+| **Pneumatics** | A pressurised canister, valves and tubing | |
+| **Rapid prototyping** | Hardware and software from scratch in 24 hours | |
+
+The `Grove_LCD_RGB_Backlight-master` and `Time-master` folders are the vendored libraries by Seeed
+Studio and Paul Stoffregen, not our code.
+
+## Coding stats
+
+None for 2019: the sketch is 121 lines, and the repo was put on GitHub in Jan 2024.
+
+## On our resumes
+
+**Skills:** Arduino · embedded C++ · I²C · relays and solenoid valves · pneumatics · rapid prototyping
+
+- Built an alarm clock in a 24-hour hackathon (Hack&Roll 2019) that escalates from a buzzer to a flashing display to a spray of water, with an Arduino Nano, a relay-driven solenoid valve and a pressurised PVC canister.
+- Wrote the firmware as a non-blocking loop with `millis()` timers, so the button stays responsive while the clock, display, buzzer and valve run on separate intervals.
+- Drove a Grove RGB LCD over I²C for the clock, the alarm time and a flashing red alert, with the alarm hour set by a potentiometer.
