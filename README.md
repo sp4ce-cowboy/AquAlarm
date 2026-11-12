@@ -8,7 +8,7 @@ valve, built in 24 hours at NUS Hack&Roll 2019 by a team from the Victoria Robot
 Club (VRMC), representing Victoria Junior College.
 
 [![Arduino](https://img.shields.io/badge/Arduino-Nano-00878F?logo=arduino&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino#L35-L121)
-[![C++](https://img.shields.io/badge/C%2B%2B-Arduino-00599C?logo=cplusplus&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino)
+[![C++](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino)
 
 </div>
 
