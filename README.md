@@ -4,13 +4,11 @@
 
 **An alarm clock that sprays water in your face if you don't wake up.**<br>
 An Arduino alarm with an RGB LCD, a buzzer and a pressurised water canister behind a solenoid
-valve, built in 24 hours at Hack&Roll 2019 by a team from VRMC.
+valve, built in 24 hours at NUS Hack&Roll 2019 by a team from the Victoria Robotics and Makers
+Club (VRMC), representing Victoria Junior College.
 
 [![Arduino](https://img.shields.io/badge/Arduino-Nano-00878F?logo=arduino&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino#L35-L121)
 [![C++](https://img.shields.io/badge/C%2B%2B-Arduino-00599C?logo=cplusplus&logoColor=white)](https://github.com/sp4ce-cowboy/AquAlarm/blob/3f913a15c633db5e371671e2fa2705ea65837a0e/aqualarm/aqualarm.ino)
-
-![Hackathon](https://img.shields.io/badge/Hack%26Roll-2019-555?style=flat-square)
-![Time](https://img.shields.io/badge/built%20in-24%20h-555?style=flat-square)
 
 </div>
 
@@ -26,7 +24,7 @@ valve, built in 24 hours at Hack&Roll 2019 by a team from VRMC.
 | | |
 |---|---|
 | **What** | A three-stage alarm: a buzzer, then a flashing red display, then a spray of water as a last resort. A button silences it |
-| **Context** | [Hack&Roll 2019](https://hacknroll.nushackers.org/), NUS Hackers' 24-hour hackathon (Jan 2019), as a team from [VRMC](https://vrmc.github.io/index.html) |
+| **Context** | [Hack&Roll 2019](https://hacknroll.nushackers.org/), NUS Hackers' 24-hour hackathon (Jan 2019), as a team from the [Victoria Robotics and Makers Club (VRMC)](https://vrmc.github.io/index.html), representing Victoria Junior College |
 | **Stack** | Arduino Nano in C++, Grove RGB LCD over I²C, the Arduino Time library, a relay, a solenoid valve, LiPo batteries, a PVC pressure canister |
 
 <img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/3eb52954-7223-4ceb-b778-1b65cb06af59" height="380"> <img src="https://github.com/sp4ce-cowboy/AquAlarm/assets/19762596/68dd5610-f135-49e8-b797-5fd22a9312cc" height="380">
@@ -67,10 +65,6 @@ flowchart LR
 
 The `Grove_LCD_RGB_Backlight-master` and `Time-master` folders are the vendored libraries by Seeed
 Studio and Paul Stoffregen, not our code.
-
-## Coding stats
-
-None for 2019: the sketch is 121 lines, and the repo was put on GitHub in Jan 2024.
 
 ## On our resumes
 
