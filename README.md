@@ -53,7 +53,7 @@ flowchart LR
   - All timing uses `millis()` intervals rather than `delay()`, so the button is read on every
     pass of the loop.
 
-## Skills shown
+## Skills covered
 
 | Skill | Where it shows (click the links for the code) | Docs |
 |---|---|---|
